@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
     }
     public void FixedUpdate()
     {
+        if (dirVect.magnitude > 0) transform.rotation = Quaternion.FromToRotation(Vector2.up, dirVect);
         rb.MovePosition(rb.transform.position + dirVect * baseMoveSpeed * Time.deltaTime);
     }
 }
