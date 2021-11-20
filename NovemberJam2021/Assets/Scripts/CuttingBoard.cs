@@ -6,7 +6,7 @@ public class CuttingBoard : Interactable
 {
     public override void OnInteract(Player player)
     {
-        if (player.GetHoldingIngredient()) {
+        if (player.GetIngredient() != null) {
             Debug.Log("Start chopping minigame...");
             // don't set holding ingredient to false bc chopping will make another ingredient? 
             // also, should we test the type of ingredient the player is holding?

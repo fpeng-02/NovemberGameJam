@@ -13,17 +13,17 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private bool throwing;
     private float throwPower;
-    private bool holdingIngredient;
+    private Ingredient ingredient = null;
 
-    public void SetHoldingIngredient(bool hi) { holdingIngredient = hi; }
-    public bool GetHoldingIngredient() { return holdingIngredient; }
+    public void SetIngredient(Ingredient ing) { ingredient = ing; }
+    public Ingredient GetIngredient() { return ingredient; }
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         throwing = false;
-        holdingIngredient = false;
+        ingredient = null;
     }
 
     // Update is called once per frame
@@ -38,13 +38,13 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonUp(1)) {
                 throwPower = Mathf.Min(maxThrowPower, Time.time - throwPower);
                 throwing = false;
-                holdingIngredient = false;
+                ingredient = null;
                 Debug.Log($"Food thrown with {throwPower} force!");
             }
         }
         else {
             if (Input.GetMouseButtonDown(1)) {
-                if (holdingIngredient) {
+                if (ingredient != null) {
                     throwing = true;
                     Debug.Log("Throwing food...");
                     dirVect = Vector3.zero;

@@ -6,12 +6,12 @@ public class IngredientBox : Interactable
 {
     public override void OnInteract(Player player)  
     {
-        if (player.GetHoldingIngredient()) {
+        if (player.GetIngredient() != null) {
             Debug.Log("Can only hold one ingredient at a time!");
         }
         else {
             Debug.Log("Ingredient box used!");
-            player.SetHoldingIngredient(true);
+            player.SetIngredient(new Ingredient());
         }
     }
 }
