@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float baseMoveSpeed = 4;
-    [SerializeField] private float reach = 1.0f;    // how far the player has to be from an interactable object to access it, i.e. distance of raycast
+    [SerializeField] private float baseMoveSpeed;
+    [SerializeField] private float reach;    // how far the player has to be from an interactable object to access it, i.e. distance of raycast
+    [SerializeField] private float maxThrowPower;
     private float h;
     private float v;
     private Vector3 dirVect;
     private Rigidbody2D rb;
     private bool throwing;
-
+    private float throwPower;
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +31,9 @@ public class Player : MonoBehaviour
         if (throwing) {
             dirVect = Vector3.zero;
             if (Input.GetMouseButtonUp(1)) {
+                throwPower = Mathf.Min(maxThrowPower, Time.time - throwPower);
                 throwing = false;
-                Debug.Log("Finished throw");
+                Debug.Log($"Food thrown with {throwPower} force!");
             }
         }
         else {
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
                 throwing = true;
                 Debug.Log("Throwing food...");
                 dirVect = Vector3.zero;
+                throwPower = Time.time;
                 return;
             }
 

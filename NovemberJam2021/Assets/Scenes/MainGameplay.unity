@@ -657,6 +657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseMoveSpeed: 7
   reach: 0.5
+  maxThrowPower: 3
 --- !u!50 &1888268079
 Rigidbody2D:
   serializedVersion: 4
