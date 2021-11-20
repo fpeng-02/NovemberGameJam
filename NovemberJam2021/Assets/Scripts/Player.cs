@@ -37,16 +37,15 @@ public class Player : MonoBehaviour
             dirVect = Vector3.zero;
             if (Input.GetMouseButtonUp(1)) {
                 throwPower = Mathf.Min(maxThrowPower, Time.time - throwPower);
+                Debug.Log($"{ingredient.GetIngredientType().ToString()} thrown with {throwPower} force!");
                 throwing = false;
                 ingredient = null;
-                Debug.Log($"Food thrown with {throwPower} force!");
             }
         }
         else {
             if (Input.GetMouseButtonDown(1)) {
                 if (ingredient != null) {
                     throwing = true;
-                    Debug.Log("Throwing food...");
                     dirVect = Vector3.zero;
                     throwPower = Time.time;
                 }

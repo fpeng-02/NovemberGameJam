@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IngredientBox : Interactable
 {
+    [SerializeField] public IngredientType type;
     public override void OnInteract(Player player)  
     {
         if (player.GetIngredient() != null) {
@@ -11,7 +12,7 @@ public class IngredientBox : Interactable
         }
         else {
             Debug.Log("Ingredient box used!");
-            player.SetIngredient(new Ingredient());
+            player.SetIngredient(new Ingredient(type));
         }
     }
 }

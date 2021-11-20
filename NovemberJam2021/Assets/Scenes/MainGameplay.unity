@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 1475183348}
   - component: {fileID: 1475183349}
   m_Layer: 6
-  m_Name: InteractBox
+  m_Name: IngredientBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,6 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee752942cf2854f48910e178223f63e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
 --- !u!1 &1509732785
 GameObject:
   m_ObjectHideFlags: 0
