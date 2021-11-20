@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class IngredientBox : Interactable
 {
-    public override void OnInteract()
+    public override void OnInteract(Player player)  
     {
-        Debug.Log("Ingredient box used!");
+        if (player.GetHoldingIngredient()) {
+            Debug.Log("Can only hold one ingredient at a time!");
+        }
+        else {
+            Debug.Log("Ingredient box used!");
+            player.SetHoldingIngredient(true);
+        }
     }
 }

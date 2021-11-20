@@ -13,12 +13,17 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private bool throwing;
     private float throwPower;
+    private bool holdingIngredient;
+
+    public void SetHoldingIngredient(bool hi) { holdingIngredient = hi; }
+    public bool GetHoldingIngredient() { return holdingIngredient; }
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         throwing = false;
+        holdingIngredient = false;
     }
 
     // Update is called once per frame
@@ -33,16 +38,18 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonUp(1)) {
                 throwPower = Mathf.Min(maxThrowPower, Time.time - throwPower);
                 throwing = false;
+                holdingIngredient = false;
                 Debug.Log($"Food thrown with {throwPower} force!");
             }
         }
         else {
             if (Input.GetMouseButtonDown(1)) {
-                throwing = true;
-                Debug.Log("Throwing food...");
-                dirVect = Vector3.zero;
-                throwPower = Time.time;
-                return;
+                if (holdingIngredient) {
+                    throwing = true;
+                    Debug.Log("Throwing food...");
+                    dirVect = Vector3.zero;
+                    throwPower = Time.time;
+                }
             }
 
             if (Input.GetButtonDown("Interact")) {
@@ -51,7 +58,7 @@ public class Player : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, reach, mask);
                 if (hit.collider != null) {
                     // should be guaranteed an Interactable here, so no nulls
-                    hit.transform.gameObject.GetComponent<Interactable>().OnInteract();
+                    hit.transform.gameObject.GetComponent<Interactable>().OnInteract(this);
                 }
             }
         }
