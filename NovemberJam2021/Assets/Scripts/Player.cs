@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject throwResultMarker;
     [SerializeField] private float powerDistScale;
     [SerializeField] private Transform pot;
+    [SerializeField] private ChargeArrow chargeArrow;
     private float h;
     private float v;
     private Vector3 dirVect;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
         throwing = false;
         ingredient = null;
         pot = GameObject.Find("Pot").transform;
+        chargeArrow.SetActive(false);
     }
 
     // Update is called once per frame
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
         // if throwing, don't let the player move
         if (throwing) {
             // TODO: fill some progress bar by (curr_power) / (maxthrowpower)
+            chargeArrow.FillProp(Mathf.Min(1, (Time.time - throwPower) / maxThrowPower));
             dirVect = Vector3.zero;
             if (Input.GetMouseButtonUp(1)) {
                 throwPower = Mathf.Min(maxThrowPower, Time.time - throwPower);
@@ -51,6 +54,7 @@ public class Player : MonoBehaviour
 
                 throwing = false;
                 ingredient = null;
+                chargeArrow.SetActive(false);
             }
         }
         else {
@@ -59,6 +63,8 @@ public class Player : MonoBehaviour
                     throwing = true;
                     dirVect = Vector3.zero;
                     throwPower = Time.time;
+                    chargeArrow.SetActive(true);
+                    chargeArrow.SetDirection(pot.position - transform.position);
                 }
             }
 
