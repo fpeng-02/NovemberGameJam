@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float baseMoveSpeed;
     [SerializeField] private float reach;    // how far the player has to be from an interactable object to access it, i.e. distance of raycast
     [SerializeField] private float maxThrowPower;
+    [SerializeField] private GameObject throwResultMarker;
+    [SerializeField] private float powerDistScale;
+    [SerializeField] private Transform pot;
     private float h;
     private float v;
     private Vector3 dirVect;
@@ -24,6 +27,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         throwing = false;
         ingredient = null;
+        pot = GameObject.Find("Pot").transform;
     }
 
     // Update is called once per frame
@@ -34,10 +38,17 @@ public class Player : MonoBehaviour
 
         // if throwing, don't let the player move
         if (throwing) {
+            // TODO: fill some progress bar by (curr_power) / (maxthrowpower)
             dirVect = Vector3.zero;
             if (Input.GetMouseButtonUp(1)) {
                 throwPower = Mathf.Min(maxThrowPower, Time.time - throwPower);
+                Vector2 throwDir = pot.position - transform.position;
+                Vector3 throwVec = throwDir.normalized * throwPower * powerDistScale;
+                Instantiate(throwResultMarker, transform.position + throwVec, Quaternion.identity);
+                Debug.Log($"Pot pos {pot.position}");
+                Debug.Log($"This pos {transform.position}");
                 Debug.Log($"{ingredient.GetIngredientType().ToString()} thrown with {throwPower} force!");
+
                 throwing = false;
                 ingredient = null;
             }
