@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float baseMoveSpeed = 4;
+    [SerializeField] private float reach = 1.0f;    // how far the player has to be from an interactable object to access it, i.e. distance of raycast
     private float h;
     private float v;
     private Vector3 dirVect;
@@ -20,33 +21,37 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        // If not throwing food, catch movement inputs or request to throw
-        // If throwing, catch release of right click (or maybe also catch a key to cancel throw?) 
-        if (throwing) {
-            if (Input.GetMouseButtonUp(1)) {
-                throwing = false;
-                Debug.Log("Finished throw");
-            }
-        } else {
-            if (Input.GetMouseButtonDown(1)) {
-                throwing = true;
-                Debug.Log("Throwing food...");
-            }
-        }
-
+    void Update() {
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
+        dirVect = (new Vector3(h, v, 0)).normalized;
 
         // if throwing, don't let the player move
         if (throwing) {
             dirVect = Vector3.zero;
+            if (Input.GetMouseButtonUp(1)) {
+                throwing = false;
+                Debug.Log("Finished throw");
+            }
         }
         else {
-            dirVect = (new Vector3(h, v, 0)).normalized;
+            if (Input.GetMouseButtonDown(1)) {
+                throwing = true;
+                Debug.Log("Throwing food...");
+                dirVect = Vector3.zero;
+                return;
+            }
+
+            if (Input.GetButtonDown("Interact")) {
+                // Raycast for interactable things 
+                LayerMask mask = LayerMask.GetMask("Interactable");
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, reach, mask);
+                if (hit.collider != null) {
+                    // should be guaranteed an Interactable here, so no nulls
+                    hit.transform.gameObject.GetComponent<Interactable>().OnInteract();
+                }
+            }
         }
-            
     }
     public void FixedUpdate()
     {
