@@ -5,6 +5,14 @@ using UnityEngine;
 public class Ingredient : MonoBehaviour
 {
     [SerializeField] public IngredientType type;
+    [SerializeField] public int value;
+    public bool canPrepare;
+
+
+    private void Start()
+    {
+        canPrepare = true;
+    }
 
     public void setIngredientType(IngredientType type)
     {
@@ -12,6 +20,14 @@ public class Ingredient : MonoBehaviour
     }
     public IngredientType GetIngredientType() {
         return type;
+    }
+    public void setPrepare(bool canPrepare)
+    {
+        this.canPrepare = canPrepare;
+    }
+    public bool getPrepare()
+    {
+        return canPrepare;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,4 +38,5 @@ public class Ingredient : MonoBehaviour
         }
 
     }
+    
 }
