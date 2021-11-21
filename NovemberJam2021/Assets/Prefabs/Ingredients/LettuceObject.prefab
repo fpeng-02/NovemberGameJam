@@ -119,10 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-<<<<<<< Updated upstream
-=======
   fType: 0
->>>>>>> Stashed changes
   value: 0
   canPrepare: 0
 --- !u!58 &-6985782780586731447
