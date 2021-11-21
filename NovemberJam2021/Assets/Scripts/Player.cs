@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxThrowPower;
     [SerializeField] private GameObject throwResultMarker;
     [SerializeField] private float powerDistScale;
-    [SerializeField] private Transform pot;
+    [SerializeField] private GameObject pot;
     [SerializeField] private ChargeArrow chargeArrow;
     private float h;
     private float v;
@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         throwing = false;
         ingredientGO = null;
-        pot = GameObject.Find("Pot").transform;
+        pot = GameObject.Find("Pot");
         chargeArrow.SetActive(false);
     }
 
@@ -46,14 +46,16 @@ public class Player : MonoBehaviour
         v = Input.GetAxisRaw("Vertical");
         dirVect = (new Vector3(h, v, 0)).normalized;
 
-        // if throwing, don't let the player move
+        //if throwing, don't let the player move
         if (throwing) {
             // TODO: fill some progress bar by (curr_power) / (maxthrowpower)
             chargeArrow.FillProp(Mathf.Min(1, (Time.time - throwPower) / maxThrowPower));
             dirVect = Vector3.zero;
+            Vector2 throwDir = pot.transform.position - transform.position;
+            transform.rotation = Quaternion.FromToRotation(Vector2.up, throwDir);
             if (Input.GetMouseButtonUp(1)) {
                 throwPower = Mathf.Min(maxThrowPower, Time.time - throwPower);
-                Vector2 throwDir = pot.position - transform.position;
+                
                 Vector3 throwVec = throwDir.normalized * throwPower * powerDistScale;
 
                 ingredientGO.transform.parent = null;
@@ -65,7 +67,7 @@ public class Player : MonoBehaviour
 
                 //Instantiate(throwResultMarker, transform.position + throwVec, Quaternion.identity); 
 
-                Debug.Log($"Pot pos {pot.position}");
+                Debug.Log($"Pot pos {pot.transform.position}");
                 Debug.Log($"This pos {transform.position}");
                 Debug.Log($"{ingredientGO.GetComponent<Ingredient>().GetIngredientType().ToString()} thrown with {throwPower} force!");
 
@@ -86,7 +88,7 @@ public class Player : MonoBehaviour
 
                     throwPower = Time.time;
                     chargeArrow.SetActive(true);
-                    chargeArrow.SetDirection(pot.position - transform.position);
+                    chargeArrow.transform.rotation = transform.rotation;
                 }
             }
 
@@ -103,7 +105,9 @@ public class Player : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        if (dirVect.magnitude > 0) transform.rotation = Quaternion.FromToRotation(Vector2.up, dirVect);
-        rb.MovePosition(rb.transform.position + dirVect * baseMoveSpeed * Time.deltaTime);
+        if (dirVect.magnitude > 0){
+            transform.rotation = Quaternion.FromToRotation(Vector2.up, dirVect);
+        } 
+        rb.velocity = dirVect * baseMoveSpeed * Time.deltaTime;
     }
 }
