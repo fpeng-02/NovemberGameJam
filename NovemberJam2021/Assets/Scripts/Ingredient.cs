@@ -37,7 +37,7 @@ public class Ingredient : MonoBehaviour
     public IngredientType GetIngredientType() {return type;}
 
     public void SetPrepare(bool canPrepare) { this.canPrepare = canPrepare; }
-    public bool SetPrepare() { return canPrepare; }
+    public bool GetPrepare() { return canPrepare; }
 
     public void SetValue(int value) { this.value = value; }
     public int GetValue() { return value; }

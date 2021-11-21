@@ -7,12 +7,6 @@ public class PanStation : Interactable
 {
     public override void OnInteract(Player player)
     {
-        if (player.GetIngredientGO() != null) {
-            BeginMinigame("HeatMinigame");
-            Player.playingMinigame = true;
-        }
-        else {
-            Debug.Log("Player not holding an ingredient!");
-        }
+        AttemptMinigame("HeatMinigame", player);
     }
 }
