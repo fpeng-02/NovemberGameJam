@@ -35,6 +35,8 @@ public class Pot : Interactable
     Dictionary<FoodType, int> iValues = null;
     List<IngredientType> ingredients = null;
     List<Recipe> recipeList = null;
+    int skillPoint;
+
 
     private void Start()
     {
@@ -43,8 +45,8 @@ public class Pot : Interactable
         {
             iValues.Add(type, 0);
         }
-
         ingredients = new List<IngredientType>();
+        skillPoint = 0;
 
         //define list of recipes. hard code
         recipeList = new List<Recipe>();
@@ -61,7 +63,7 @@ public class Pot : Interactable
     }
 
 
-    public void AddFood(IngredientType it, FoodType ft, int value)
+    public void AddFood(IngredientType it, FoodType ft, int value, int skillPoint)
     {
         iValues[ft] += value;
         Debug.Log(ingredients);
@@ -69,6 +71,7 @@ public class Pot : Interactable
         {
             ingredients.Add(it);
         }
+        this.skillPoint += skillPoint;
     }
 
     public Recipe FindRecipes(){
@@ -103,6 +106,8 @@ public class Pot : Interactable
     public override void OnInteract(Player player)
     {
         Recipe returnRecipe = FindRecipes();
+        int recipePoints = returnRecipe.recipeValue + skillPoint;
+
         //Reset iValues/ingredients
         iValues = new Dictionary<FoodType, int>();
         foreach (FoodType type in Enum.GetValues(typeof(FoodType)))
@@ -111,6 +116,7 @@ public class Pot : Interactable
         }
 
         ingredients = new List<IngredientType>();
+        skillPoint = 0;
         //window popup and sprite?
     }
 }

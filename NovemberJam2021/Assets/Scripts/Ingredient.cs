@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Ingredient : MonoBehaviour
 {
-    [SerializeField] public IngredientType type;
-    [SerializeField] public FoodType fType;
-    [SerializeField] public int value;
+    [SerializeField] private IngredientType type;
+    [SerializeField] private FoodType fType;
+    [SerializeField] private int value;
+    [SerializeField] private int skillPoint;
+
     public bool canPrepare;
 
 
@@ -28,7 +30,7 @@ public class Ingredient : MonoBehaviour
     {
         if (collision.gameObject.tag == "Pot")
         {
-            collision.gameObject.GetComponent<Pot>().AddFood(type,fType, value);
+            collision.gameObject.GetComponent<Pot>().AddFood(type,fType, value, skillPoint);
             Destroy(this.gameObject);
         }
 
