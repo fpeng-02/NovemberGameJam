@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   progressBar: {fileID: 379708934}
-  requiredCuts: 30
+  requiredCuts: 15
   chopper: {fileID: 830245454}
   spacebar: {fileID: 1428061699}
 --- !u!4 &1097518925
