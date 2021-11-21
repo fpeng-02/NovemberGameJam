@@ -58,15 +58,22 @@ public class Player : MonoBehaviour
                 Vector3 throwVec = throwDir.normalized * throwPower * powerDistScale;
 
                 ingredientGO.transform.parent = null;
-                ingredientGO.transform.position = transform.position + throwVec;
-                //Instantiate(throwResultMarker, transform.position + throwVec, Quaternion.identity);
+                Rigidbody2D ingredientRigid = ingredientGO.GetComponent<Rigidbody2D>();
+                ingredientRigid.bodyType = RigidbodyType2D.Dynamic;
+                ingredientRigid.drag = 2f;
+                ingredientRigid.AddForce(throwVec*100);
+                
+
+                //Instantiate(throwResultMarker, transform.position + throwVec, Quaternion.identity); 
 
                 Debug.Log($"Pot pos {pot.position}");
                 Debug.Log($"This pos {transform.position}");
                 Debug.Log($"{ingredient.GetIngredientType().ToString()} thrown with {throwPower} force!");
 
-                throwing = false;
+                ingredientGO = null;
                 ingredient = null;
+
+                throwing = false;   
                 chargeArrow.SetActive(false);
             }
         }
