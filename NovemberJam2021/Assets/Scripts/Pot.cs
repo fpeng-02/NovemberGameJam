@@ -111,7 +111,7 @@ public class Pot : Interactable
         Recipe returnRecipe = FindRecipes();
         int recipePoints = returnRecipe.recipeValue + skillPoint;
         scoreController.updateText(recipePoints);
-        
+            
         //Reset iValues/ingredients
         iValues = new Dictionary<FoodType, int>();
         foreach (FoodType type in Enum.GetValues(typeof(FoodType)))
