@@ -21,7 +21,11 @@ public class CuttingBoardMG : MinigameController
     {
         cutsMade = 0;
         progressBar.fillAmount = 0;
-        ingredient = GameObject.Find("Player").transform.GetChild(0).GetComponent<Ingredient>();
+        foreach (Transform child in GameObject.Find("Player").transform) {
+            if ((ingredient = child.gameObject.GetComponent<Ingredient>()) != null) {
+                break;
+            }
+        }
         displaySR.sprite = ingredient.GetUnpreparedSprite();
     }
 

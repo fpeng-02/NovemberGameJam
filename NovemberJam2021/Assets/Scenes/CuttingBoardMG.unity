@@ -717,7 +717,7 @@ MonoBehaviour:
   requiredCuts: 15
   chopper: {fileID: 830245454}
   spacebar: {fileID: 1428061699}
-  displaySR: {fileID: 0}
+  displaySR: {fileID: 790823685}
 --- !u!4 &1097518925
 Transform:
   m_ObjectHideFlags: 0
