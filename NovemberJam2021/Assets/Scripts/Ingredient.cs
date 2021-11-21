@@ -28,7 +28,7 @@ public class Ingredient : MonoBehaviour
     {
         if (collision.gameObject.tag == "Pot")
         {
-            collision.gameObject.GetComponent<Pot>().add(type,fType, value);
+            collision.gameObject.GetComponent<Pot>().AddFood(type,fType, value);
             Destroy(this.gameObject);
         }
 
