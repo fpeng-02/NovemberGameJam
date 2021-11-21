@@ -102,6 +102,7 @@ public class Pot : Interactable
                 }
             }
         }
+        
         Debug.Log(topRecipe.name);
         return topRecipe;
     }
@@ -109,7 +110,17 @@ public class Pot : Interactable
     public override void OnInteract(Player player)
     {
         Recipe returnRecipe = FindRecipes();
-        int recipePoints = returnRecipe.recipeValue + skillPoint;
+        int recipePoints;
+        if (returnRecipe == null)
+        {
+            recipePoints = 0;
+        }
+        else
+        {
+            //number of points for recipe
+            recipePoints = returnRecipe.recipeValue + skillPoint;
+        }
+        
         scoreController.updateText(recipePoints);
             
         //Reset iValues/ingredients

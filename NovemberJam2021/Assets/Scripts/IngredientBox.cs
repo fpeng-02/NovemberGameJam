@@ -6,6 +6,10 @@ public class IngredientBox : Interactable
 {
     [SerializeField] private GameObject ingredientGO;
 
+    void Start()
+    {
+        gameObject.transform.Find("IngredientDisplay").GetComponent<SpriteRenderer>().sprite = ingredientGO.GetComponent<Ingredient>().GetUnpreparedSprite();
+    }
 
     public override void OnInteract(Player player)  
     {

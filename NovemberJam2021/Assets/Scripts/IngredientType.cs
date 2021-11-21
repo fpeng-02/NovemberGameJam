@@ -2,5 +2,6 @@ public enum IngredientType
 {
     None,
     Lettuce,
-    Tomatoes
+    Tomatoe,
+    Carrot
 };
