@@ -118,8 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b540ea642c0fd541a38a2a90c1d8f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  fType: 1
+  type: 6
+  fType: 0
   value: 1
   skillPoint: 0
   unpreparedSprite: {fileID: 21300000, guid: 3bcf2b6ab03bc444ea722f0076b7352b, type: 3}

@@ -5258,6 +5258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MilkBox
       objectReference: {fileID: 0}
+    - target: {fileID: 2035563699249161511, guid: a6cb1f49bfbf3a6408c109e358aa4288, type: 3}
+      propertyPath: ingredientGO
+      value: 
+      objectReference: {fileID: 1822168145818569668, guid: 00dd6a9a9c6546049a89b57fdc0c211f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6cb1f49bfbf3a6408c109e358aa4288, type: 3}
 --- !u!1 &1698132340
@@ -5792,6 +5796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoupStockBox
       objectReference: {fileID: 0}
+    - target: {fileID: 2035563699249161511, guid: a6cb1f49bfbf3a6408c109e358aa4288, type: 3}
+      propertyPath: ingredientGO
+      value: 
+      objectReference: {fileID: 678968644290639683, guid: 15f1346800f2d084685edc48dea1a57e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6cb1f49bfbf3a6408c109e358aa4288, type: 3}
 --- !u!4 &1904700537 stripped
