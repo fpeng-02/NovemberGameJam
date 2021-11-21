@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class IngredientBox : Interactable
 {
-    [SerializeField] public IngredientType type;
     [SerializeField] private GameObject ingredientGO;
 
 
@@ -15,7 +14,7 @@ public class IngredientBox : Interactable
         }
         else {
             Debug.Log("Ingredient box used!");
-            player.SetIngredient(new Ingredient(type));
+            player.SetIngredient(new Ingredient(ingredientGO.GetComponent<Throwable>().GetIngredientType() ));
             
             GameObject IGO = Instantiate(ingredientGO, player.transform, true);
             IGO.transform.localPosition = new Vector3(0,1,0);
