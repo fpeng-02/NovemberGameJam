@@ -16,6 +16,7 @@ public abstract class Interactable : MonoBehaviour
 
     public void BeginMinigame(string sceneName)
     {
+
         StartCoroutine(transitionDoor.TransitionThenLoadScene(sceneName));
     }
 }
