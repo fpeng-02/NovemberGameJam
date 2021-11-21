@@ -11,6 +11,7 @@ public class CuttingBoardMG : MinigameController
     [SerializeField] private SpaceToggledSprite chopper;  // get to the--!
     [SerializeField] private SpaceToggledSprite spacebar;
     private int cutsMade;
+    private bool ended = false;  // prevent space spamming from trying to end the minigame many times
 
 
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class CuttingBoardMG : MinigameController
     // Update is called once per frame
     void Update()
     {
+        if (ended) return;
         /* 
          * continuously poll for space down.
          * when space down pressed, a series of things need to happen.
@@ -42,6 +44,7 @@ public class CuttingBoardMG : MinigameController
                 Debug.Log("CLEAR!");
 
                 EndMinigame("CuttingBoardMG");
+                ended = true;
                 // TODO: give the finished ingredient to the player
             }
         }
