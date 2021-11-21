@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         //if throwing, don't let the player move
         if (throwing) {
             // TODO: fill some progress bar by (curr_power) / (maxthrowpower)
-            chargeArrow.FillProp(Mathf.Min(1, (Time.time - throwPower) / maxThrowPower));
+            chargeArrow.FillProp(Mathf.Min(1, 2*(Time.time - throwPower) / maxThrowPower));
             dirVect = Vector3.zero;
             Vector2 throwDir = pot.transform.position - transform.position;
             transform.rotation = Quaternion.FromToRotation(Vector2.up, throwDir);
