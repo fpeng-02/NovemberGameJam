@@ -19,7 +19,7 @@ public abstract class Interactable : MonoBehaviour
         if (player.GetIngredientGO() != null) {
             Ingredient ingredient = player.GetIngredientGO().GetComponent<Ingredient>();
             if (ingredient.GetPrepare()) {
-                BeginMinigame("CuttingBoardMG");
+                BeginMinigame(sceneName);
                 Player.playingMinigame = true;
             }
             else {
