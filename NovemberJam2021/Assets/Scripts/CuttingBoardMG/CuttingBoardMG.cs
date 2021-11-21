@@ -8,8 +8,8 @@ public class CuttingBoardMG : MinigameController
 {
     [SerializeField] private Image progressBar;
     [SerializeField] private int requiredCuts;
-    [SerializeField] private SpaceToggledSprite chopper;  // get to the--!
-    [SerializeField] private SpaceToggledSprite spacebar;
+    [SerializeField] private SpaceFlashedSprite chopper;  // get to the--!
+    [SerializeField] private SpaceFlashedSprite spacebar;
     private int cutsMade;
     private bool ended = false;  // prevent space spamming from trying to end the minigame many times
 

@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainGameplay.unity
     guid: d32f3e2af683555479feee547e0e1584
   - enabled: 0
-    path: Assets/Scenes/MinigameTest.unity
+    path: 
     guid: 4d54a9773a806704584dd5ff72f4281d
   - enabled: 1
     path: Assets/Scenes/CuttingBoardMG.unity
     guid: a65c2c26efd47e2478a77bf9038bc0f8
+  - enabled: 1
+    path: Assets/Scenes/HeatMinigame.unity
+    guid: 1d047bfc5a43b5c43b2666a2fcf63aea
   m_configObjects: {}

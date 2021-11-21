@@ -8,8 +8,6 @@ public class CuttingBoard : Interactable
     public override void OnInteract(Player player)
     {
         if (player.GetIngredientGO() != null) {
-            Debug.Log("Start chopping minigame...");
-            //StartCoroutine(MinigameTransition.TransitionThenLoadScene("CuttingBoardMG"));
             BeginMinigame("CuttingBoardMG");
             Player.playingMinigame = true;
             

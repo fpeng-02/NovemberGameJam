@@ -15,10 +15,8 @@ public class SpaceToggledSprite : MonoBehaviour
         sr.sprite = upSprite;
     }
 
-    public IEnumerator Step()
+    void Update()
     {
-        sr.sprite = downSprite;
-        yield return new WaitForSeconds(0.1f);
-        sr.sprite = upSprite;
+        sr.sprite = Input.GetKey("space") ? downSprite : upSprite;
     }
 }
