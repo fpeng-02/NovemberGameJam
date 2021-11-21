@@ -19,6 +19,15 @@ public class Player : MonoBehaviour
     private float throwPower;
     private Ingredient ingredient = null;
 
+    private GameObject ingredientGO = null;
+
+    public void setIngredientGO (GameObject ingredientGO)
+    {
+        this.ingredientGO = ingredientGO;
+    }
+    public GameObject GetIngredientGO() { return ingredientGO; }
+
+
     public void SetIngredient(Ingredient ing) { ingredient = ing; }
     public Ingredient GetIngredient() { return ingredient; }
 
@@ -47,7 +56,11 @@ public class Player : MonoBehaviour
                 throwPower = Mathf.Min(maxThrowPower, Time.time - throwPower);
                 Vector2 throwDir = pot.position - transform.position;
                 Vector3 throwVec = throwDir.normalized * throwPower * powerDistScale;
-                Instantiate(throwResultMarker, transform.position + throwVec, Quaternion.identity);
+
+                ingredientGO.transform.parent = null;
+                ingredientGO.transform.position = transform.position + throwVec;
+                //Instantiate(throwResultMarker, transform.position + throwVec, Quaternion.identity);
+
                 Debug.Log($"Pot pos {pot.position}");
                 Debug.Log($"This pos {transform.position}");
                 Debug.Log($"{ingredient.GetIngredientType().ToString()} thrown with {throwPower} force!");
@@ -61,7 +74,10 @@ public class Player : MonoBehaviour
             if (Input.GetMouseButtonDown(1)) {
                 if (ingredient != null) {
                     throwing = true;
+
+                    //TODO: change to decreased movement 
                     dirVect = Vector3.zero;
+
                     throwPower = Time.time;
                     chargeArrow.SetActive(true);
                     chargeArrow.SetDirection(pot.position - transform.position);
