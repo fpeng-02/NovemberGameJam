@@ -36,6 +36,7 @@ public class Pot : Interactable
     List<IngredientType> ingredients = null;
     List<Recipe> recipeList = null;
     int skillPoint;
+    ScoreController scoreController;
 
 
     private void Start()
@@ -59,6 +60,8 @@ public class Pot : Interactable
         requiredType.Add(FoodType.Vegetable, 1);
         recipeList.Add(new Recipe(requiredType, IngredientType.None, "Lettuce1"));
         //recipeList.Add();
+
+        scoreController = GameObject.Find("ScoreBoard").GetComponent<ScoreController>();
 
     }
 
@@ -107,7 +110,8 @@ public class Pot : Interactable
     {
         Recipe returnRecipe = FindRecipes();
         int recipePoints = returnRecipe.recipeValue + skillPoint;
-
+        scoreController.updateText(recipePoints);
+        
         //Reset iValues/ingredients
         iValues = new Dictionary<FoodType, int>();
         foreach (FoodType type in Enum.GetValues(typeof(FoodType)))
@@ -119,4 +123,5 @@ public class Pot : Interactable
         skillPoint = 0;
         //window popup and sprite?
     }
+    
 }
