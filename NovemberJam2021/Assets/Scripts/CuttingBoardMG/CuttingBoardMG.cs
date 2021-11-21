@@ -10,8 +10,10 @@ public class CuttingBoardMG : MinigameController
     [SerializeField] private int requiredCuts;
     [SerializeField] private SpaceFlashedSprite chopper;  // get to the--!
     [SerializeField] private SpaceFlashedSprite spacebar;
+    [SerializeField] private SpriteRenderer displaySR;
     private int cutsMade;
     private bool ended = false;  // prevent space spamming from trying to end the minigame many times
+    private Ingredient ingredient;
 
 
     // Start is called before the first frame update
@@ -19,33 +21,25 @@ public class CuttingBoardMG : MinigameController
     {
         cutsMade = 0;
         progressBar.fillAmount = 0;
+        ingredient = GameObject.Find("Player").transform.GetChild(0).GetComponent<Ingredient>();
+        displaySR.sprite = ingredient.GetUnpreparedSprite();
     }
-
-
 
     // Update is called once per frame
     void Update()
     {
         if (ended) return;
-        /* 
-         * continuously poll for space down.
-         * when space down pressed, a series of things need to happen.
-         * 1. top bar needs to fill up a bit more
-         * 2. knife needs to come down 
-         * 3. chop sound needs to play? 
-         * 4. (opt) space bar needs to darken to indicate that yes you did press it or something
-        */
         if (Input.GetKeyDown("space")) {
             StartCoroutine(chopper.Step());
             StartCoroutine(spacebar.Step());
             cutsMade++;
             progressBar.fillAmount = cutsMade * (1.0f / requiredCuts);
             if (cutsMade >= requiredCuts) {
-                Debug.Log("CLEAR!");
+                displaySR.sprite = ingredient.GetPreparedSprite();
+                ingredient.ChangeToPreparedIngredient();
 
                 EndMinigame("CuttingBoardMG");
                 ended = true;
-                // TODO: give the finished ingredient to the player
             }
         }
     }

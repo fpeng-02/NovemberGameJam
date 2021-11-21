@@ -121,7 +121,9 @@ MonoBehaviour:
   type: 1
   fType: 1
   value: 1
-  canPrepare: 0
+  skillPoint: 0
+  unpreparedSprite: {fileID: 21300000, guid: 2dbc94bb9f87c28479649668a8a10cd8, type: 3}
+  preparedSprite: {fileID: 21300000, guid: 2dbc94bb9f87c28479649668a8a10cd8, type: 3}
 --- !u!58 &-6985782780586731447
 CircleCollider2D:
   m_ObjectHideFlags: 0

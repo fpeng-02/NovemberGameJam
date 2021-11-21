@@ -8,14 +8,28 @@ public class Ingredient : MonoBehaviour
     [SerializeField] private FoodType fType;
     [SerializeField] private int value;
     [SerializeField] private int skillPoint;
-
-    public bool canPrepare;
-
+    [SerializeField] private Sprite unpreparedSprite;
+    [SerializeField] private Sprite preparedSprite;
+    private SpriteRenderer sr;
+    private bool canPrepare;
 
     private void Start()
     {
+        skillPoint = 0;
         canPrepare = true;
+        sr = GetComponent<SpriteRenderer>();
+        unpreparedSprite = sr.sprite;
     }
+
+    public void ChangeToPreparedIngredient() 
+    {
+        skillPoint = 1;
+        sr.sprite = preparedSprite;
+        canPrepare = false;
+    }
+
+    public Sprite GetUnpreparedSprite() { return unpreparedSprite; }
+    public Sprite GetPreparedSprite() { return preparedSprite; }
 
     public void SetIngredientType(IngredientType type) { this.type = type; }
     public IngredientType GetIngredientType() {return type;}
