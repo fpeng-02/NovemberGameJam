@@ -195,6 +195,12 @@ public class Pot : Interactable
 
     public override void OnInteract(Player player)
     {
+        Transform potIndicator = GameObject.Find("PotIndicator").transform;
+        foreach (Transform child in potIndicator) {
+            if (child.gameObject.tag != "PotIndicatorWall")
+                GameObject.Destroy(child.gameObject);
+        }
+
         Recipe returnRecipe = FindRecipes();
         int recipePoints;
         if (returnRecipe == null)

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ingredient
   - Pot
+  - PotIndicatorWall
   layers:
   - Default
   - TransparentFX

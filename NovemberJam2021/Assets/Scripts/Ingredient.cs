@@ -13,6 +13,8 @@ public class Ingredient : MonoBehaviour
     private SpriteRenderer sr;
     private bool canPrepare;
 
+    [SerializeField] private GameObject dummyFloatingObject;
+
     private void Start()
     {
         skillPoint = 0;
@@ -44,6 +46,10 @@ public class Ingredient : MonoBehaviour
     {
         if (collision.gameObject.tag == "Pot")
         {
+            // spawn a random thing inside 
+            GameObject go = Instantiate(dummyFloatingObject);
+            go.GetComponent<FloatingIngredient>().SetSprite(canPrepare ? unpreparedSprite : preparedSprite);
+
             collision.gameObject.GetComponent<Pot>().AddFood(type,fType, value, skillPoint);
             Destroy(this.gameObject);
         }
