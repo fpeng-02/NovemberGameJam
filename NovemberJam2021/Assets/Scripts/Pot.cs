@@ -57,8 +57,12 @@ public class Pot : Interactable
         recipeList.Add(new Recipe(requiredType, IngredientType.Carrot, "Ratatouille"));
 
         requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 3);
+        recipeList.Add(new Recipe(requiredType, IngredientType.Lettuce, "Fancy Salad"));
+
+        requiredType = new Dictionary<FoodType, int>();
         requiredType.Add(FoodType.Vegetable, 1);
-        recipeList.Add(new Recipe(requiredType, IngredientType.Lettuce, "Salad"));
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Salad"));
 
         requiredType = new Dictionary<FoodType, int>();
         requiredType.Add(FoodType.Vegetable, 2);
@@ -71,17 +75,13 @@ public class Pot : Interactable
         requiredType.Add(FoodType.Meat, 1);
         recipeList.Add(new Recipe(requiredType, IngredientType.Tomato, "Spaghetti and Meatballs"));
 
-        requiredType = new Dictionary<FoodType, int>();
-        requiredType.Add(FoodType.Vegetable, 1);
-        requiredType.Add(FoodType.Rice, 1);
-        recipeList.Add(new Recipe(requiredType, IngredientType.Rice, "Fried Rice"));
 
         requiredType = new Dictionary<FoodType, int>();
         requiredType.Add(FoodType.Vegetable, 1);
         requiredType.Add(FoodType.Rice, 1);
         requiredType.Add(FoodType.Egg, 1);
 
-        recipeList.Add(new Recipe(requiredType, IngredientType.Rice, "Egg Fried Rice"));
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Egg Fried Rice"));
 
         requiredType = new Dictionary<FoodType, int>();
         requiredType.Add(FoodType.Vegetable, 1);
@@ -92,14 +92,14 @@ public class Pot : Interactable
         requiredType = new Dictionary<FoodType, int>();
         requiredType.Add(FoodType.Meat, 2);
         requiredType.Add(FoodType.Flour, 1);
-        recipeList.Add(new Recipe(requiredType, IngredientType.Flour, "Meaty Sandwich"));
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Meaty Sandwich"));
 
         requiredType = new Dictionary<FoodType, int>();
         requiredType.Add(FoodType.Vegetable, 1);
         requiredType.Add(FoodType.Meat, 1);
         requiredType.Add(FoodType.Flour, 1);
         requiredType.Add(FoodType.SoupStock, 1);
-        recipeList.Add(new Recipe(requiredType, IngredientType.Flour, "Ramen"));
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Ramen"));
 
         requiredType = new Dictionary<FoodType, int>();
         requiredType.Add(FoodType.Vegetable, 1);
@@ -142,8 +142,51 @@ public class Pot : Interactable
         requiredType.Add(FoodType.Egg, 2);
         recipeList.Add(new Recipe(requiredType, IngredientType.None, "Omelete du Fromage"));
 
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 1);
+        requiredType.Add(FoodType.Flour, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.Carrot, "Carrot Bread"));
 
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Flour, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Bread"));
 
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Flour, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Bread"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Rice, 1);
+        requiredType.Add(FoodType.Meat, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Sushi"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 1);
+        requiredType.Add(FoodType.Flour, 1);
+        requiredType.Add(FoodType.Meat, 1);
+        requiredType.Add(FoodType.Dairy, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.Lettuce, "Lettuce Wrapped Burger"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 1);
+        requiredType.Add(FoodType.Flour, 1);
+        requiredType.Add(FoodType.Meat, 1);
+        requiredType.Add(FoodType.Dairy, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Burger"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 1);
+        requiredType.Add(FoodType.Flour, 1);
+        requiredType.Add(FoodType.Meat, 2);
+        requiredType.Add(FoodType.Dairy, 2);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Double Double"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 1);
+        requiredType.Add(FoodType.Flour, 1);
+        requiredType.Add(FoodType.Meat, 2);
+        requiredType.Add(FoodType.Dairy, 2);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Double Double"));
 
         //recipeList.Add();
 
