@@ -5,8 +5,9 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     private TransitionDoor transitionDoor;
+    protected List<IngredientType> acceptedIngredients;
 
-    void Start()
+    public void Start()
     {
         transitionDoor = GameObject.Find("TransitionDoor").GetComponent<TransitionDoor>();
     }
@@ -18,7 +19,9 @@ public abstract class Interactable : MonoBehaviour
     {
         if (player.GetIngredientGO() != null) {
             Ingredient ingredient = player.GetIngredientGO().GetComponent<Ingredient>();
-            if (ingredient.GetPrepare()) {
+            Debug.Log(ingredient.GetIngredientType());
+            if (ingredient.GetPrepare() && acceptedIngredients.Contains(ingredient.GetIngredientType())) {
+                Debug.Log(sceneName);
                 BeginMinigame(sceneName);
                 Player.playingMinigame = true;
             }
@@ -33,6 +36,8 @@ public abstract class Interactable : MonoBehaviour
 
     public void BeginMinigame(string sceneName)
     {
+        Debug.Log(transitionDoor);
+        Debug.Log(sceneName);
         StartCoroutine(transitionDoor.TransitionThenLoadScene(sceneName));
     }
 }

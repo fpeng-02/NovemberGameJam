@@ -287,6 +287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlourBox
       objectReference: {fileID: 0}
+    - target: {fileID: 2035563699249161511, guid: a6cb1f49bfbf3a6408c109e358aa4288, type: 3}
+      propertyPath: ingredientGO
+      value: 
+      objectReference: {fileID: 1753062363153110789, guid: 3c7756f9a711dfb40a9d70e5a88abcd3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6cb1f49bfbf3a6408c109e358aa4288, type: 3}
 --- !u!1 &90292809
@@ -1439,6 +1443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EggBox
       objectReference: {fileID: 0}
+    - target: {fileID: 2035563699249161511, guid: a6cb1f49bfbf3a6408c109e358aa4288, type: 3}
+      propertyPath: ingredientGO
+      value: 
+      objectReference: {fileID: 4001634823222958213, guid: d24c50dbb3ac28a4d9862fc3313356d8, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6cb1f49bfbf3a6408c109e358aa4288, type: 3}
 --- !u!1 &1087341897
