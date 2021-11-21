@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Pot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    /*Types of food
+    Meat
+    Veg
+
+    public class Recipe
     {
-        
+        (int, int)
+    }
+    */
+    private int count = 0;
+    public void add(int xd)
+    {
+        count += xd;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
+
+
+
 }

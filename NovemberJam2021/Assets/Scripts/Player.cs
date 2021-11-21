@@ -17,9 +17,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private bool throwing;
     private float throwPower;
-    private Ingredient ingredient = null;
-
-    private GameObject ingredientGO = null;
+    //private Ingredient ingredient = null;
+    private GameObject ingredientGO;
 
     public void setIngredientGO (GameObject ingredientGO)
     {
@@ -28,15 +27,15 @@ public class Player : MonoBehaviour
     public GameObject GetIngredientGO() { return ingredientGO; }
 
 
-    public void SetIngredient(Ingredient ing) { ingredient = ing; }
-    public Ingredient GetIngredient() { return ingredient; }
+    //public void SetIngredient(Ingredient ing) { ingredient = ing; }
+    //public Ingredient GetIngredient() { return ingredient; }
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         throwing = false;
-        ingredient = null;
+        ingredientGO = null;
         pot = GameObject.Find("Pot").transform;
         chargeArrow.SetActive(false);
     }
@@ -68,10 +67,10 @@ public class Player : MonoBehaviour
 
                 Debug.Log($"Pot pos {pot.position}");
                 Debug.Log($"This pos {transform.position}");
-                Debug.Log($"{ingredient.GetIngredientType().ToString()} thrown with {throwPower} force!");
+                Debug.Log($"{ingredientGO.GetComponent<Ingredient>().GetIngredientType().ToString()} thrown with {throwPower} force!");
 
                 ingredientGO = null;
-                ingredient = null;
+                //ingredient = null;
 
                 throwing = false;   
                 chargeArrow.SetActive(false);
@@ -79,7 +78,7 @@ public class Player : MonoBehaviour
         }
         else {
             if (Input.GetMouseButtonDown(1)) {
-                if (ingredient != null) {
+                if (ingredientGO != null) {
                     throwing = true;
 
                     //TODO: change to decreased movement 
