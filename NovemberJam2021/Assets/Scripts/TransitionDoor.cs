@@ -8,17 +8,20 @@ public class TransitionDoor : MonoBehaviour
     [SerializeField] private Vector3 closedPos;
     [SerializeField] private Vector3 openPos;
     [SerializeField] private GameObject clearCongrats;
+    private GameObject potInfoSide;
     
     void Start()
     {
         transform.position = openPos;
         //clearCongrats = transform.GetChild(0).gameObject;
         clearCongrats.SetActive(false);
+        potInfoSide = GameObject.Find("PotInfoSide");
     }
 
     public IEnumerator TransitionThenLoadScene(string sceneName)
     {
         yield return StartCoroutine(LerpPosition(closedPos, 0.5f));
+        potInfoSide.SetActive(false);
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         while (!asyncLoad.isDone) yield return null;
         yield return StartCoroutine(LerpPosition(openPos, 0.5f));
@@ -35,6 +38,7 @@ public class TransitionDoor : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         yield return StartCoroutine(LerpPosition(closedPos, 0.5f));
         clearCongrats.SetActive(false);
+        potInfoSide.SetActive(true);
         AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(sceneName);
         while (!asyncUnload.isDone) { yield return null; }
         yield return StartCoroutine(LerpPosition(openPos, 0.5f));
