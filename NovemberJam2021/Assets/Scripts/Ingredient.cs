@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ingredient : MonoBehaviour
 {
     [SerializeField] public IngredientType type;
+    [SerializeField] public FoodType fType;
     [SerializeField] public int value;
     public bool canPrepare;
 
@@ -14,26 +15,20 @@ public class Ingredient : MonoBehaviour
         canPrepare = true;
     }
 
-    public void setIngredientType(IngredientType type)
-    {
-        this.type = type;
-    }
-    public IngredientType GetIngredientType() {
-        return type;
-    }
-    public void setPrepare(bool canPrepare)
-    {
-        this.canPrepare = canPrepare;
-    }
-    public bool getPrepare()
-    {
-        return canPrepare;
-    }
+    public void SetIngredientType(IngredientType type) { this.type = type; }
+    public IngredientType GetIngredientType() {return type;}
+
+    public void SetPrepare(bool canPrepare) { this.canPrepare = canPrepare; }
+    public bool SetPrepare() { return canPrepare; }
+
+    public void SetValue(int value) { this.value = value; }
+    public int GetValue() { return value; }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Pot")
         {
-            collision.gameObject.GetComponent<Pot>().add(1);
+            collision.gameObject.GetComponent<Pot>().add(type,fType, value);
             Destroy(this.gameObject);
         }
 
