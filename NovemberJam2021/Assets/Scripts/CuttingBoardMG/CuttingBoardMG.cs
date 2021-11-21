@@ -39,7 +39,8 @@ public class CuttingBoardMG : MonoBehaviour
             if (cutsMade >= requiredCuts) {
                 Debug.Log("CLEAR!");
                 SceneManager.UnloadSceneAsync("CuttingBoardMG");
-                // TOOD: give the finished ingredient to the player
+                Player.playingMinigame = false;
+                // TODO: give the finished ingredient to the player
             }
         }
     }

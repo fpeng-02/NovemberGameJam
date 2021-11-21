@@ -19,13 +19,13 @@ public class Player : MonoBehaviour
     private float throwPower;
     //private Ingredient ingredient = null;
     private GameObject ingredientGO;
+    public static bool playingMinigame;
 
-    public void setIngredientGO (GameObject ingredientGO)
-    {
-        this.ingredientGO = ingredientGO;
-    }
+    public void setIngredientGO (GameObject ingredientGO) { this.ingredientGO = ingredientGO; }
     public GameObject GetIngredientGO() { return ingredientGO; }
 
+    public void SetPlayingMinigame (bool playing) { playingMinigame = playing; }
+    public bool GetPlayingMinigame () { return playingMinigame; }
 
     //public void SetIngredient(Ingredient ing) { ingredient = ing; }
     //public Ingredient GetIngredient() { return ingredient; }
@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        if (playingMinigame) return;
+
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
         dirVect = (new Vector3(h, v, 0)).normalized;
