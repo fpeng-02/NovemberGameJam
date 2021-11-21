@@ -2,6 +2,13 @@ public enum IngredientType
 {
     None,
     Lettuce,
-    Tomatoe,
-    Carrot
+    Tomato,
+    Carrot,
+    Rice,
+    Flour,
+    Meat,
+    SoupStock,
+    Egg,
+    Milk,
+
 };

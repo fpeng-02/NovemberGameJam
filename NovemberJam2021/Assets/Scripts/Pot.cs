@@ -53,12 +53,98 @@ public class Pot : Interactable
         recipeList = new List<Recipe>();
 
         Dictionary<FoodType, int> requiredType = new Dictionary<FoodType, int>();
-        requiredType.Add(FoodType.Vegetable, 2);
-        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Lettuce2"));
+        requiredType.Add(FoodType.Vegetable, 3);
+        recipeList.Add(new Recipe(requiredType, IngredientType.Carrot, "Ratatouille"));
 
         requiredType = new Dictionary<FoodType, int>();
         requiredType.Add(FoodType.Vegetable, 1);
-        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Lettuce1"));
+        recipeList.Add(new Recipe(requiredType, IngredientType.Lettuce, "Salad"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 2);
+        requiredType.Add(FoodType.Flour, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.Tomato, "Spaghetti"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 2);
+        requiredType.Add(FoodType.Flour, 1);
+        requiredType.Add(FoodType.Meat, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.Tomato, "Spaghetti and Meatballs"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 1);
+        requiredType.Add(FoodType.Rice, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.Rice, "Fried Rice"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 1);
+        requiredType.Add(FoodType.Rice, 1);
+        requiredType.Add(FoodType.Egg, 1);
+
+        recipeList.Add(new Recipe(requiredType, IngredientType.Rice, "Egg Fried Rice"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 1);
+        requiredType.Add(FoodType.Rice, 1);
+        requiredType.Add(FoodType.Meat, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.Rice, "Shrimp Fried Rice"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Meat, 2);
+        requiredType.Add(FoodType.Flour, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.Flour, "Meaty Sandwich"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 1);
+        requiredType.Add(FoodType.Meat, 1);
+        requiredType.Add(FoodType.Flour, 1);
+        requiredType.Add(FoodType.SoupStock, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.Flour, "Ramen"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 1);
+        requiredType.Add(FoodType.Meat, 1);
+        requiredType.Add(FoodType.Flour, 1);
+        requiredType.Add(FoodType.SoupStock, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.Carrot, "Chicken Noodle Soup"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Meat, 4);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Meatballs"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.SoupStock, 1);
+        requiredType.Add(FoodType.Dairy, 1);
+        requiredType.Add(FoodType.Meat, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Clam Chowder"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.SoupStock, 1);
+        requiredType.Add(FoodType.Dairy, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Chowder"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Egg, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Fried Egg"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Meat, 1);
+        requiredType.Add(FoodType.Egg, 1);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Green Eggs and Ham"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Vegetable, 1);
+        requiredType.Add(FoodType.Egg, 2);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Omelette"));
+
+        requiredType = new Dictionary<FoodType, int>();
+        requiredType.Add(FoodType.Dairy, 1);
+        requiredType.Add(FoodType.Egg, 2);
+        recipeList.Add(new Recipe(requiredType, IngredientType.None, "Omelete du Fromage"));
+
+
+
+
         //recipeList.Add();
 
         scoreController = GameObject.Find("ScoreBoard").GetComponent<ScoreController>();

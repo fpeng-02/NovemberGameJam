@@ -3,5 +3,9 @@ public enum FoodType
     Meat,
     Vegetable,
     Fruit,
-    Dairy
+    Dairy,
+    Rice,
+    Flour,
+    SoupStock,
+    Egg
 };
