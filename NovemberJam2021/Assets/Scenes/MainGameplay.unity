@@ -912,7 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e0339eab1f79d4690085c9b1530d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMoveSpeed: 7
+  baseMoveSpeed: 500
   reach: 0.5
   maxThrowPower: 3
   throwResultMarker: {fileID: 0}
