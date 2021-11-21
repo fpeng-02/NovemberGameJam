@@ -652,7 +652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dc0a5e0340a3ec4ab14ae7d5fe96b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressRate: 0.0007
+  progressRate: 0.007
   tolerance: 0.1
   heatBar: {fileID: 2030868194}
   progressBar: {fileID: 442813212}
@@ -990,4 +990,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2da1c9d5288fd4d8d8802d9643ad15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volatility: 0.005
+  volatility: 0.02

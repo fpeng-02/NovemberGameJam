@@ -7,12 +7,12 @@ public class TransitionDoor : MonoBehaviour
 {
     [SerializeField] private Vector3 closedPos;
     [SerializeField] private Vector3 openPos;
-    private GameObject clearCongrats;
+    [SerializeField] private GameObject clearCongrats;
     
     void Start()
     {
         transform.position = openPos;
-        clearCongrats = transform.GetChild(0).gameObject;
+        //clearCongrats = transform.GetChild(0).gameObject;
         clearCongrats.SetActive(false);
     }
 
@@ -32,9 +32,9 @@ public class TransitionDoor : MonoBehaviour
     public IEnumerator TransitionThenUnloadScene(string sceneName)
     {
         clearCongrats.SetActive(true);
-        yield return new WaitForSeconds(0.7f);
-        clearCongrats.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
         yield return StartCoroutine(LerpPosition(closedPos, 0.5f));
+        clearCongrats.SetActive(false);
         AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(sceneName);
         while (!asyncUnload.isDone) { yield return null; }
         yield return StartCoroutine(LerpPosition(openPos, 0.5f));

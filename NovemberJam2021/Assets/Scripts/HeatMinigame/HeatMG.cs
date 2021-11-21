@@ -19,7 +19,7 @@ public class HeatMG : MinigameController
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (ended) return;
 
