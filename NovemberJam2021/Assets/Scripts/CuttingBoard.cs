@@ -9,7 +9,8 @@ public class CuttingBoard : Interactable
     {
         if (player.GetIngredientGO() != null) {
             Debug.Log("Start chopping minigame...");
-            SceneManager.LoadScene("CuttingBoardMG", LoadSceneMode.Additive);
+            //StartCoroutine(MinigameTransition.TransitionThenLoadScene("CuttingBoardMG"));
+            BeginMinigame("CuttingBoardMG");
             Player.playingMinigame = true;
             
             // don't set holding ingredient to false bc chopping will make another ingredient? 

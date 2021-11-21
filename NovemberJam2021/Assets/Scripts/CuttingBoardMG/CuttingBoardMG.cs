@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class CuttingBoardMG : MonoBehaviour
+public class CuttingBoardMG : MinigameController
 {
     [SerializeField] private Image progressBar;
     [SerializeField] private int requiredCuts;
@@ -19,6 +19,8 @@ public class CuttingBoardMG : MonoBehaviour
         cutsMade = 0;
         progressBar.fillAmount = 0;
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -38,8 +40,8 @@ public class CuttingBoardMG : MonoBehaviour
             progressBar.fillAmount = cutsMade * (1.0f / requiredCuts);
             if (cutsMade >= requiredCuts) {
                 Debug.Log("CLEAR!");
-                SceneManager.UnloadSceneAsync("CuttingBoardMG");
-                Player.playingMinigame = false;
+
+                EndMinigame("CuttingBoardMG");
                 // TODO: give the finished ingredient to the player
             }
         }
