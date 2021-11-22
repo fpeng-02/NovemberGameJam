@@ -27,6 +27,9 @@ public abstract class Interactable : MonoBehaviour
             }
             else {
                 Debug.Log("Player holding ingredient, but not able to be processed");
+                //Sets the error text on
+                player.transform.Find("ErrorText").gameObject.SetActive(true);
+                StartCoroutine(wait(player));
             }
         }
         else {
@@ -39,5 +42,12 @@ public abstract class Interactable : MonoBehaviour
         Debug.Log(transitionDoor);
         Debug.Log(sceneName);
         StartCoroutine(transitionDoor.TransitionThenLoadScene(sceneName));
+    }
+
+    //disable the error message after a certain amount of time
+    public IEnumerator wait(Player player)
+    {
+        yield return new WaitForSeconds(1.0f);
+        player.transform.Find("ErrorText").gameObject.SetActive(false);
     }
 }
