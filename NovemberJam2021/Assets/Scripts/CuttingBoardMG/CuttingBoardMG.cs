@@ -36,8 +36,5 @@ public class CuttingBoardMG : MinigameController
             }
         }
 
-        if (Input.GetKeyUp("space")) {
-            audioController.stopAudio("chop");
-        }
     }
 }
