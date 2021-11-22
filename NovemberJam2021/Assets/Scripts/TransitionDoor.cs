@@ -10,6 +10,7 @@ public class TransitionDoor : MonoBehaviour
     [SerializeField] private Vector3 openPos;
     [SerializeField] private GameObject clearCongrats;
     [SerializeField] private GameObject createdFoodTMPGO;
+    [SerializeField] private GameObject tutorialText;
     private GameObject potInfoSide;
     
     void Start()
@@ -17,17 +18,32 @@ public class TransitionDoor : MonoBehaviour
         transform.position = openPos;
         clearCongrats.SetActive(false);
         potInfoSide = GameObject.Find("PotInfoSide");
+        StartCoroutine(TransitionToTutorial());
+    }
+
+    public IEnumerator TransitionToTutorial()
+    {
+        Debug.Log("hit!");
+        tutorialText.SetActive(true);
+        yield return StartCoroutine(LerpPosition(closedPos, 0.5f));
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        player.SetPlayingMinigame(true);
+        while (!Input.GetKeyDown("space")) {
+            yield return null;
+        }
+        player.SetPlayingMinigame(false);
+        yield return StartCoroutine(LerpPosition(openPos, 0.5f));
+        tutorialText.SetActive(false);
     }
 
     public void SetCreatedFoodText (string dishName, int recipePoints)
     {
         var createdFoodTMP = createdFoodTMPGO.GetComponent<TextMeshProUGUI>();
-        createdFoodTMP.SetText($"Created {dishName}!\n\n +{recipePoints} points");
+        createdFoodTMP.SetText($"Created {dishName}!\n\n +{recipePoints} points\n\n Space to continue");
     }
 
     public IEnumerator TransitionToCreatedFood()
     {
-        Debug.Log("hit!");
         createdFoodTMPGO.SetActive(true);
         yield return StartCoroutine(LerpPosition(closedPos, 0.5f));
         Player player = GameObject.Find("Player").GetComponent<Player>();
@@ -38,7 +54,6 @@ public class TransitionDoor : MonoBehaviour
         player.SetPlayingMinigame(false);
         yield return StartCoroutine(LerpPosition(openPos, 0.5f));
         createdFoodTMPGO.SetActive(false);
-        Debug.Log("done!");
     }
 
     public IEnumerator TransitionThenLoadScene(string sceneName)
