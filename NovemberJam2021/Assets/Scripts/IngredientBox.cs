@@ -18,9 +18,6 @@ public class IngredientBox : Interactable
         }
         else {
             Debug.Log("Ingredient box used!");
-
-            //player.SetIngredient(new Ingredient(ingredientGO.GetComponent<Ingredient>().GetIngredientType() ));
-
             GameObject IGO = Instantiate(ingredientGO, player.transform, true);
             IGO.transform.localPosition = new Vector3(0,1,0);
             player.setIngredientGO(IGO);

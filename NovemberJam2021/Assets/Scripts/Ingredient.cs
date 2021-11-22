@@ -46,7 +46,7 @@ public class Ingredient : MonoBehaviour
     {
         if (collision.gameObject.tag == "Pot")
         {
-            // spawn a random thing inside 
+            // spawn a random thing inside the right side
             GameObject go = Instantiate(dummyFloatingObject);
             go.GetComponent<FloatingIngredient>().SetSprite(canPrepare ? unpreparedSprite : preparedSprite);
 
