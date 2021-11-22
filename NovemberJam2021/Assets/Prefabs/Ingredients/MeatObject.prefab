@@ -123,7 +123,7 @@ MonoBehaviour:
   value: 1
   skillPoint: 0
   unpreparedSprite: {fileID: 21300000, guid: 3bcf2b6ab03bc444ea722f0076b7352b, type: 3}
-  preparedSprite: {fileID: 0}
+  preparedSprite: {fileID: 21300000, guid: 52e60467d6d581940a65a94d9dadfa8e, type: 3}
   dummyFloatingObject: {fileID: 2852569759307720591, guid: fdd7890db9507054eb89d5f4ece942b1, type: 3}
 --- !u!58 &1337639221116100133
 CircleCollider2D:
