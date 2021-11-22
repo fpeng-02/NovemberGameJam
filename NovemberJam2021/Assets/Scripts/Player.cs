@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     //private Ingredient ingredient = null;
     private GameObject ingredientGO;
     public static bool playingMinigame;
+    private Animator animator;
+
 
     public void setIngredientGO (GameObject ingredientGO) { this.ingredientGO = ingredientGO; }
     public GameObject GetIngredientGO() { return ingredientGO; }
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         throwing = false;
         ingredientGO = null;
+        animator = GetComponent<Animator>();
         pot = GameObject.Find("Pot");
         chargeArrow.SetActive(false);
     }
@@ -48,6 +51,19 @@ public class Player : MonoBehaviour
         v = Input.GetAxisRaw("Vertical");
         dirVect = (new Vector3(h, v, 0)).normalized;
 
+
+        if(h == 0 && v == 0){
+            animator.SetBool("isRunning", false);
+        } else{
+            animator.SetBool("isRunning", true);
+        }
+
+        if(GetIngredientGO() != null){
+            animator.SetBool("isHolding", true);
+        } else{
+            animator.SetBool("isHolding", false);
+        }
+           
         //if throwing, don't let the player move
         if (throwing) {
             // TODO: fill some progress bar by (curr_power) / (maxthrowpower)
