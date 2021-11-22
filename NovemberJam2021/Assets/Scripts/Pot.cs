@@ -232,7 +232,7 @@ public class Pot : Interactable
             }
         }
         
-        Debug.Log(topRecipe.name);
+        //Debug.Log(topRecipe.name);
         return topRecipe;
     }
 
@@ -246,16 +246,24 @@ public class Pot : Interactable
 
         Recipe returnRecipe = FindRecipes();
         int recipePoints;
+        string recipeNameToPass;
         if (returnRecipe == null)
         {
+            recipeNameToPass = "wet goop...";
             recipePoints = 0;
         }
         else
         {
             //number of points for recipe
+            recipeNameToPass = returnRecipe.name;
             recipePoints = returnRecipe.recipeValue + skillPoint;
         }
-        
+
+        // Draw in the transition board
+        TransitionDoor transitionDoor = GameObject.Find("TransitionDoor").GetComponent<TransitionDoor>();
+        transitionDoor.SetCreatedFoodText(recipeNameToPass, recipePoints);
+        StartCoroutine(transitionDoor.TransitionToCreatedFood());
+
         scoreController.updateText(recipePoints);
             
         //Reset iValues/ingredients

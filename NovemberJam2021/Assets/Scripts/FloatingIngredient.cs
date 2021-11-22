@@ -21,7 +21,9 @@ public class FloatingIngredient : MonoBehaviour
 
         Vector3 center = potIndicator.position;
         Vector3 offset = new Vector3(Random.Range(-xrange, xrange), Random.Range(-yrange, yrange));
-        this.transform.position = center + offset;
+        Vector3 spawnLoc = center + offset;
+        spawnLoc.z = -1;
+        this.transform.position = spawnLoc;
     }
 
     public void SetSprite(Sprite sprite) { StartCoroutine(WaitForSR(sprite)); }

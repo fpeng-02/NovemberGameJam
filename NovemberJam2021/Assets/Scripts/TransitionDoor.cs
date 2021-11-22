@@ -2,20 +2,43 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TransitionDoor : MonoBehaviour
 {
     [SerializeField] private Vector3 closedPos;
     [SerializeField] private Vector3 openPos;
     [SerializeField] private GameObject clearCongrats;
+    [SerializeField] private GameObject createdFoodTMPGO;
     private GameObject potInfoSide;
     
     void Start()
     {
         transform.position = openPos;
-        //clearCongrats = transform.GetChild(0).gameObject;
         clearCongrats.SetActive(false);
         potInfoSide = GameObject.Find("PotInfoSide");
+    }
+
+    public void SetCreatedFoodText (string dishName, int recipePoints)
+    {
+        var createdFoodTMP = createdFoodTMPGO.GetComponent<TextMeshProUGUI>();
+        createdFoodTMP.SetText($"Created {dishName}!\n\n +{recipePoints} points");
+    }
+
+    public IEnumerator TransitionToCreatedFood()
+    {
+        Debug.Log("hit!");
+        createdFoodTMPGO.SetActive(true);
+        yield return StartCoroutine(LerpPosition(closedPos, 0.5f));
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        player.SetPlayingMinigame(true);
+        while (!Input.GetKeyDown("space")) {
+            yield return null;
+        }
+        player.SetPlayingMinigame(false);
+        yield return StartCoroutine(LerpPosition(openPos, 0.5f));
+        createdFoodTMPGO.SetActive(false);
+        Debug.Log("done!");
     }
 
     public IEnumerator TransitionThenLoadScene(string sceneName)

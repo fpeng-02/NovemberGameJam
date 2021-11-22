@@ -10,7 +10,6 @@ public class ScoreController : MonoBehaviour
     public void updateText(int score){
         totalScore += score;
         var damageTextTMP = GetComponentInChildren<TextMeshProUGUI>();
-        damageTextTMP.color = Color.red;
-        damageTextTMP.SetText("Score: " + totalScore);
+        damageTextTMP.SetText(totalScore.ToString());
     }
 }
