@@ -12,10 +12,11 @@ public class CuttingBoardMG : MinigameController
     [SerializeField] private SpaceFlashedSprite spacebar;
     private int cutsMade;
     private bool ended = false;  // prevent space spamming from trying to end the minigame many times
-
+    AudioController audioController;
     new void Start()
     {
         base.Start();
+        audioController = GameObject.Find("Audio").GetComponent<AudioController>();
         cutsMade = 0;
         progressBar.fillAmount = 0;
     }
@@ -24,6 +25,7 @@ public class CuttingBoardMG : MinigameController
     {
         if (ended) return;
         if (Input.GetKeyDown("space")) {
+            audioController.playAudio("chop");
             StartCoroutine(chopper.Step());
             StartCoroutine(spacebar.Step());
             cutsMade++;
@@ -32,6 +34,10 @@ public class CuttingBoardMG : MinigameController
                 EndMinigame("CuttingBoardMG");
                 ended = true;
             }
+        }
+
+        if (Input.GetKeyUp("space")) {
+            audioController.stopAudio("chop");
         }
     }
 }
