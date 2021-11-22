@@ -11,10 +11,13 @@ public class HeatMG : MinigameController
     [SerializeField] private FluctuatingBar heatBar;
     [SerializeField] private Image progressBar;
     private bool ended = false;
+    AudioController audioController;
 
     new void Start()
     {
         base.Start();
+        audioController = GameObject.Find("Audio").GetComponent<AudioController>();
+        audioController.playAudio("fry");
         progressBar.fillAmount = 0;
     }
 
@@ -24,6 +27,7 @@ public class HeatMG : MinigameController
 
         if (progress >= 1) {
             ended = true;
+            audioController.stopAudio("fry");
             EndMinigame("HeatMinigame");
         }
 
