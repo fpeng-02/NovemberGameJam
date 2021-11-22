@@ -11,6 +11,9 @@ public class TransitionDoor : MonoBehaviour
     [SerializeField] private GameObject clearCongrats;
     [SerializeField] private GameObject createdFoodTMPGO;
     [SerializeField] private GameObject tutorialText;
+    [SerializeField] private GameObject gameOverText;
+    [SerializeField] private ScoreController score;
+    [SerializeField] private GameTimer timer;
     private GameObject potInfoSide;
     
     void Start()
@@ -21,9 +24,28 @@ public class TransitionDoor : MonoBehaviour
         StartCoroutine(TransitionToTutorial());
     }
 
+    public IEnumerator TransitionToGameOver()
+    {
+        
+        var gameOverTMP = gameOverText.GetComponent<TextMeshProUGUI>();
+        gameOverTMP.SetText($"Game over!\nScore: {score.GetScore()}\n\nEnter to exit");
+
+
+        gameOverText.SetActive(true);
+        yield return StartCoroutine(LerpPosition(closedPos, 0.5f));
+        Player player = GameObject.Find("Player").GetComponent<Player>();
+        player.SetPlayingMinigame(true);
+        while (!Input.GetKeyDown("return")) {
+            yield return null;
+        }
+        player.SetPlayingMinigame(false);
+        yield return StartCoroutine(LerpPosition(openPos, 0.5f));
+        gameOverText.SetActive(false);
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public IEnumerator TransitionToTutorial()
     {
-        Debug.Log("hit!");
         tutorialText.SetActive(true);
         yield return StartCoroutine(LerpPosition(closedPos, 0.5f));
         Player player = GameObject.Find("Player").GetComponent<Player>();
@@ -34,6 +56,7 @@ public class TransitionDoor : MonoBehaviour
         player.SetPlayingMinigame(false);
         yield return StartCoroutine(LerpPosition(openPos, 0.5f));
         tutorialText.SetActive(false);
+        timer.Unfreeze();
     }
 
     public void SetCreatedFoodText (string dishName, int recipePoints)
